@@ -6,9 +6,15 @@ void main() {
   ));
 }
 
-class Card extends StatelessWidget {
+class Card extends StatefulWidget {
   const Card({Key? key}) : super(key: key);
 
+  @override
+  State<Card> createState() => _CardState();
+}
+
+class _CardState extends State<Card> {
+  int counter = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +59,7 @@ class Card extends StatelessWidget {
             ),
             const SizedBox(height: 30),
             const Text(
-              'CURRENT POSITION',
+              'CURRENT FLUTTER LEVEL',
               style: TextStyle(
                 color: Colors.grey,
                 letterSpacing: 1.5,
@@ -61,7 +67,7 @@ class Card extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              'Flutter developer',
+              '$counter',
               style: TextStyle(
                 color: Colors.amberAccent[200],
                 letterSpacing: 1.5,
@@ -86,6 +92,15 @@ class Card extends StatelessWidget {
             )
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() => {
+            counter++
+          });
+        },
+        child: const Icon(Icons.add),
+        backgroundColor: Colors.grey[400],
       ),
     );
   }
